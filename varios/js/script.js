@@ -77,6 +77,7 @@ function presentarInfo(array, clase) {
         element.classList.toggle(clase);
     });
 }
+
 function eliminarDatos(){
     localStorage.clear();
     sessionStorage.clear();
@@ -110,13 +111,27 @@ ingresar.addEventListener('click',() =>{
 const basica = 'suite basica' ,
 premium = 'suite premium',
 presidencial = 'suite presidencial'
-let basicastg, premiumstg, presidencialstg, texteado
+let basicastg, premiumstg, presidencialstg,nuevoDiv
 
 const btnBasica = document.getElementById('btn__habitaciones__basica'),
 btnPremium = document.getElementById('btn__habitaciones__premium'), 
 btnPresidencial = document.getElementById('btn__habitaciones__presidencial')
+let inner = document.getElementById('inner')
 
-btnBasica.addEventListener('click', (e) => {
-    texteado = `Su suite elegida es la <div> ${basica} </div>`
-})
 
+btnBasica.addEventListener('click', () => {
+    inner.textContent = 'RESERVASTE LA SUITE BASICA, TE ESPERAMOS MAÑANA A LAS 8 AM!'
+
+}
+)
+
+btnPremium.addEventListener('click', () => {
+    inner.textContent = 'RESERVASTE LA SUITE PREMIUM, TE ESPERAMOS MAÑANA A LAS 8 AM!'
+
+}
+)
+btnPresidencial.addEventListener('click', () => {
+    inner.textContent = 'RESERVASTE LA SUITE PRESIDENCIAL, TE ESPERAMOS MAÑANA A LAS 8 AM!'
+
+}
+)
