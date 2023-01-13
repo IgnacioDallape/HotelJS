@@ -1,0 +1,72 @@
+.header__titulo__contenedor{
+    display: flex;
+    justify-content: center;
+}
+.header__titulo{
+    background-color: antiquewhite;
+}
+
+.left{
+    display: flex;
+    justify-content: end;
+}
+
+.flex{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    
+}
+
+.opciones{
+    gap: 12rem;
+    position: relative;
+    left: 10rem;
+}
+
+.paddingTop{
+    padding-top: 3rem;
+}
+
+.paddingBottom{
+    padding-bottom: 3rem;
+}
+
+.btn-contenedor{
+    padding: 1.2rem;
+    position: relative;
+    left: 5rem;
+}
+.btn-tamaño{
+    width: 15rem;
+    
+}
+
+.body__suites__contenedor{
+    width: 20rem;
+    
+}
+.body__suites{
+    width: 17rem;
+    position: relative;
+    left: 5rem;
+    bottom: 1rem;
+    
+}
+
+.gap{
+    
+    padding: 1rem;
+    
+}
+
+.body__form__centrado{
+    position: relative;
+    left: 15rem;
+}
+
+.centrado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
