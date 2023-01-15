@@ -23,9 +23,20 @@ ingresar = document.getElementById('login')
 modalEl = document.getElementById('modalLogin'),
 modal = new bootstrap.Modal(modalEl),
 toggles = document.querySelectorAll('.toggles');
-nombreDeIngreso = document.getElementById('nombreDeIngreso')
+nombreDeIngreso = document.getElementById('nombreDeIngreso'),
+basica = 'suite basica' ,
+premium = 'suite premium',
+presidencial = 'suite presidencial',
+btnBasica = document.getElementById('btn__habitaciones__basica'),
+btnPremium = document.getElementById('btn__habitaciones__premium'), 
+btnPresidencial = document.getElementById('btn__habitaciones__presidencial'),
+btnLogout = document.getElementById('btnLogout'),
+divGeneral = document.getElementById('divGeneral');
 
-let  usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex
+let inner = document.getElementById('inner'),
+btnRecordar = document.getElementById('btn__habitaciones__recordar'),
+basicastg, premiumstg, presidencialstg,nuevoDiv,
+usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida
 
 
 function arrayIngresado(user,mail){  //tomo los datos ingresados por el usuario 
@@ -82,9 +93,20 @@ function eliminarDatos(){
     localStorage.clear();
     sessionStorage.clear();
 }
+function eliminarDatosSession(){
+    sessionStorage.clear();
+}
 
-
+function guardarSuite(suite){
+    suiteElegida = localStorage.setItem('habitacion',suite)
+    suiteElegida = localStorage.getItem(suite)
+    suiteGuardada = suiteElegida
+    console.log(suiteGuardada)
+    return suiteElegida
+}
+eliminarDatos()
 ingresar.addEventListener('click',() =>{
+    
     arrayIngresado(emailUsuario,contraseñaUsuario)
     corroborarDatosMail(usuarios, emailUsuario,contraseñaUsuario)
 
@@ -106,20 +128,8 @@ ingresar.addEventListener('click',() =>{
     }
 })
 
-// nombreDeIngreso.innerHTML = `Hola <div> ${nombreIndex} </div> `
-
-const basica = 'suite basica' ,
-premium = 'suite premium',
-presidencial = 'suite presidencial'
-let basicastg, premiumstg, presidencialstg,nuevoDiv
-
-const btnBasica = document.getElementById('btn__habitaciones__basica'),
-btnPremium = document.getElementById('btn__habitaciones__premium'), 
-btnPresidencial = document.getElementById('btn__habitaciones__presidencial')
-let inner = document.getElementById('inner')
-
-
 btnBasica.addEventListener('click', () => {
+    guardarSuite(basica)
     inner.textContent = 'RESERVASTE LA SUITE BASICA, TE ESPERAMOS MAÑANA A LAS 8 AM!'
 
 }
@@ -127,11 +137,23 @@ btnBasica.addEventListener('click', () => {
 
 btnPremium.addEventListener('click', () => {
     inner.textContent = 'RESERVASTE LA SUITE PREMIUM, TE ESPERAMOS MAÑANA A LAS 8 AM!'
-
+    guardarSuite(premium)
 }
 )
 btnPresidencial.addEventListener('click', () => {
     inner.textContent = 'RESERVASTE LA SUITE PRESIDENCIAL, TE ESPERAMOS MAÑANA A LAS 8 AM!'
+    guardarSuite(presidencial)
 
 }
 )
+btnRecordar.addEventListener('click', () => {
+    inner.textContent = 'Reservaste la ' + localStorage.getItem('habitacion')
+})
+
+btnLogout.addEventListener('click', () => {
+    inner.textContent = ""
+    eliminarDatosSession()
+    presentarInfo(toggles, 'd-none')
+})
+
+
