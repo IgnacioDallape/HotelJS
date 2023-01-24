@@ -1,0 +1,22 @@
+{
+  "name": "hoteljs",
+  "version": "1.0.0",
+  "description": "hotel.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgnacioDallape/HotelJS.git"
+  },
+  "author": "Ignacio Dallape",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgnacioDallape/HotelJS/issues"
+  },
+  "homepage": "https://github.com/IgnacioDallape/HotelJS#readme",
+  "dependencies": {
+    "sweetalert2": "^11.7.0"
+  }
+}

@@ -31,6 +31,12 @@
 .paddingBottom{
     padding-bottom: 3rem;
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+} 
+
 
 .btn-contenedor{
     padding: 1.2rem;
@@ -56,7 +62,7 @@
 
 .gap{
     
-    padding: 1rem;
+    padding: 1rem; 
     
 }
 
