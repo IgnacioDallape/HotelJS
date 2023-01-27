@@ -1,19 +1,20 @@
 const usuarios = [{
-    user: 'nacho',
+    user: 'Ignacio',
     password: 'dallape',
     mail: 'nachodallape@mail.com'
 },
 {
-    user: 'rodrigo',
+    user: 'Rodrigo',
     password: 'molina',
     mail: 'rodrigomolina@mail.com'
 },
 {
-    user: 'ariel',
+    user: 'Ariel',
     password: 'feque',
     mail: 'arielfeque@mail.com'
 }
 ]
+
 
 const login = document.getElementById('btnModalLogin'),
 emailUsuario = document.getElementById('emailLogin'),
@@ -31,12 +32,18 @@ btnBasica = document.getElementById('btn__habitaciones__basica'),
 btnPremium = document.getElementById('btn__habitaciones__premium'), 
 btnPresidencial = document.getElementById('btn__habitaciones__presidencial'),
 btnLogout = document.getElementById('btnLogout'),
-divGeneral = document.getElementById('divGeneral');
+divGeneral = document.getElementById('divGeneral'),
+enviarReserva = document.getElementById('enviarReserva'),
+nombreReserva = document.getElementById('nombreReserva'),
+apellidoReserva = document.getElementById('apellidoReserva'),
+mailReserva = document.getElementById('mailReserva'),
+terminos = document.getElementById('terminos'),
+inner1 = document.getElementById('inner1');
 
 let inner = document.getElementById('inner'),
 btnRecordar = document.getElementById('btn__habitaciones__recordar'),
 basicastg, premiumstg, presidencialstg,nuevoDiv,
-usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida
+usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida, ingresoBooleano
 
 
 function arrayIngresado(user,mail){  //tomo los datos ingresados por el usuario 
@@ -54,21 +61,43 @@ function corroborarDatosMail(usuario, usuarioPorLoguear,contraseña){  //corrobo
 
     encontradoMail = usuarios.find((usuario) => usuario.mail === emailUsuario.value)
     encontradoContraseña = usuarios.find((usuario) => usuario.password === contraseñaUsuario.value)
+    console.log(encontradoContraseña)
+    console.log(encontradoMail)
     if(encontradoContraseña === encontradoMail){
         if(encontradoMail != undefined){
             if(encontradoContraseña != undefined){
+                ingresoBooleano = true
                 return true
             } else { 
-                alert('Contraseña incorrecta')
+                Swal.fire({
+                    title: 'Datos incorrectos.',
+                    text: 'Intentalo de nuevo',
+                    icon: 'error',
+                    confirmButtonText: 'Volver'
+                })
+                ingresoBooleano = false
                 return false
             }
         } else {
-            alert('E-mail incorrecto')
+            Swal.fire({
+                title: 'Datos incorrectos.',
+                text: 'Intentalo de nuevo',
+                icon: 'error',
+                confirmButtonText: 'Volver'
+            })
+            ingresoBooleano = false
             return false
         }
     } else {
-        alert('usuario/contraseña incorrecto/a')
+        Swal.fire({
+            title: 'Datos incorrectos.',
+            text: 'Intentalo de nuevo',
+            icon: 'error',
+            confirmButtonText: 'Volver'
+        })
+        ingresoBooleano = false
         return false
+        
     }
     
 
@@ -87,6 +116,8 @@ function presentarInfo(array, clase) {
     array.forEach(element => {
         element.classList.toggle(clase);
     });
+    
+
 }
 
 function eliminarDatos(){
@@ -101,16 +132,45 @@ function guardarSuite(suite){
     suiteElegida = localStorage.setItem('habitacion',suite)
     suiteElegida = localStorage.getItem(suite)
     suiteGuardada = suiteElegida
-    console.log(suiteGuardada)
     return suiteElegida
 }
+function guardarDatosReserva(nombre,apellido,mail){
+    datosReservaNombre = localStorage.setItem('nombre',nombre)
+    datosReservaApellido = localStorage.setItem('apellido',apellido)
+    datosReservaMail = localStorage.setItem('mail',mail)
+    datosReservaNombre = localStorage.getItem(nombre)
+    datosReservaApellido = localStorage.getItem(apellido)
+    datosReservaMail = localStorage.getItem(mail)
+    nombreGuardado = datosReservaNombre
+    apellidoGuardado = datosReservaApellido
+    mailGuardado = datosReservaMail
+    return (nombreGuardado, apellidoGuardado, mailGuardado)
+}
+
+function encontrarNombreUsuario(usuario){
+    nombreIndex = usuario.find((usuario) => usuario.mail === emailUsuario.value)
+    console.log(nombreIndex)
+    return nombreIndex
+}
+
+// let passwordUser
+
+// function encontrarContraseñaUsuario(usuario){
+//     passwordUser = usuario.find((usuario) => usuario.mail === emailUsuario.value)
+//     console.log(passwordUser.password)
+//     return passwordUser
+// }
+
+
 eliminarDatos()
 ingresar.addEventListener('click',() =>{
     
     arrayIngresado(emailUsuario,contraseñaUsuario)
     corroborarDatosMail(usuarios, emailUsuario,contraseñaUsuario)
-
-    if(typeof corroborarDatosMail != false){
+    console.log(typeof corroborarDatosMail)
+    console.log(ingresoBooleano)
+    console.log(typeof emailUsuario)
+    if(ingresoBooleano != false){
         
         if((encontradoMail.mail == emailUsuario.value)&&(encontradoContraseña.password == contraseñaUsuario.value)){
             if(recordarme.checked){
@@ -118,6 +178,9 @@ ingresar.addEventListener('click',() =>{
             } else {
                 almacenarDatos(usuarioPorLoguear,sessionStorage)
             }
+            // encontrarContraseñaUsuario(usuarios)
+            encontrarNombreUsuario(usuarios)
+            inner1.textContent = 'Bienvenido ' + nombreIndex.user + " !"
         modal.hide();
         presentarInfo(toggles, 'd-none')
         
@@ -129,28 +192,45 @@ ingresar.addEventListener('click',() =>{
 })
 
 btnBasica.addEventListener('click', () => {
-    guardarSuite(basica)
-    inner.textContent = 'RESERVASTE LA SUITE BASICA, TE ESPERAMOS MAÑANA A LAS 8 AM!'
+        guardarSuite(basica)
+    
+    
 
 }
 )
 
 btnPremium.addEventListener('click', () => {
-    inner.textContent = 'RESERVASTE LA SUITE PREMIUM, TE ESPERAMOS MAÑANA A LAS 8 AM!'
     guardarSuite(premium)
 }
 )
 btnPresidencial.addEventListener('click', () => {
-    inner.textContent = 'RESERVASTE LA SUITE PRESIDENCIAL, TE ESPERAMOS MAÑANA A LAS 8 AM!'
     guardarSuite(presidencial)
 
 }
 )
 btnRecordar.addEventListener('click', () => {
-    inner.textContent = 'Reservaste la ' + localStorage.getItem('habitacion')
+    if(localStorage.getItem('habitacion') != null && localStorage.getItem('nombre') != null && localStorage.getItem('apellido') != null && localStorage.getItem('mail') != null){
+        inner.textContent = 'Hola '+ localStorage.getItem('nombre') + " " + localStorage.getItem('apellido') + '! Reservaste la ' + localStorage.getItem('habitacion') + ', te llegará la confirmacion de reserva a tu mail: ' + localStorage.getItem('mail')
+    } else {
+        inner.textContent = 'No has reservado ninguna habitación por el momento'
+    }
 })
 
 btnLogout.addEventListener('click', () => {
+    Toastify({
+        text: "Vuelva pronto!",
+        duration: 3000,
+        destination: "",
+        newWindow: true,
+        close: true,
+        gravity: "bottom", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+        background: "linear-gradient(to right, rgb(150, 150, 68), rgb(105, 120, 46))",
+        },
+        onClick: function(){}
+    }).showToast();    
     inner.textContent = ""
     eliminarDatosSession()
     presentarInfo(toggles, 'd-none')
@@ -158,32 +238,42 @@ btnLogout.addEventListener('click', () => {
 
 
 
-const enviarReserva = document.getElementById('enviarReserva'),
-nombreReserva = document.getElementById('nombreReserva'),
-apellidoReserva = document.getElementById('apellidoReserva'),
-mailReserva = document.getElementById('mailReserva')
+
+
 
 //ENVIO DE RESERVA
 
+let memoriaReserva
+
 enviarReserva.addEventListener('click', () => {
     
-    if(nombreReserva.value != "" && apellidoReserva.value != "" && mailReserva.value != "" ){                
+    if(nombreReserva.value != "" && apellidoReserva.value != "" && mailReserva.value != "" && terminos.checked){                
         Toastify({
             text: "Reserva Confirmada!!",
             duration: 3000,
             destination: "",
             newWindow: true,
             close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            gravity: "top", 
+            position: "right", 
+            stopOnFocus: true, 
             style: {
             background: "linear-gradient(to right, #00b09b, #96c93d)",
             },
-            onClick: function(){} // Callback after click
+            onClick: function(){}
         }).showToast();
         
-                    
+        memoriaReserva = true
+        console.log(nombreReserva.value, apellidoReserva.value, mailReserva.value)
+        guardarDatosReserva(nombreReserva.value, apellidoReserva.value, mailReserva.value)
+        }else if(!terminos.checked){
+            Swal.fire({
+                title: 'Es necesario aceptar los terminos y condiciones para reservar!',
+                text: 'Volve a realizar el procedimiento, por favor',
+                icon: 'error',
+                confirmButtonText: 'Volver'
+            })
+            memoriaReserva = false
         } else {
             Swal.fire({
                 title: 'Completa todos los campos para reservar!',
@@ -191,7 +281,7 @@ enviarReserva.addEventListener('click', () => {
                 icon: 'error',
                 confirmButtonText: 'Volver'
             })
-            
+            memoriaReserva = false
         }
         }
                 )

@@ -58,6 +58,7 @@
     left: 5rem;
     bottom: 1rem;
     
+    
 }
 
 .gap{
@@ -75,4 +76,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.pregunta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 58rem;
+    top: 11rem;
+}
+
+.inner{
+    position: relative;
+    right: 33rem;
+    top: 17rem;
+    width: 11rem;
 }
