@@ -27,7 +27,7 @@ habitaciones = document.getElementById('habitaciones');
 let inner = document.getElementById('inner'),
 btnRecordar = document.getElementById('btn__habitaciones__recordar'),
 basicastg, premiumstg, presidencialstg,nuevoDiv,
-usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida, ingresoBooleano, nochesReservadas
+usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida, ingresoBooleano, nochesReservadas;
 
 //   USUARIOS PARA LOGIN
 
