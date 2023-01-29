@@ -1,21 +1,3 @@
-const usuarios = [{
-    user: 'Ignacio',
-    password: 'dallape',
-    mail: 'nachodallape@mail.com'
-},
-{
-    user: 'Rodrigo',
-    password: 'molina',
-    mail: 'rodrigomolina@mail.com'
-},
-{
-    user: 'Ariel',
-    password: 'feque',
-    mail: 'arielfeque@mail.com'
-}
-]
-
-
 const login = document.getElementById('btnModalLogin'),
 emailUsuario = document.getElementById('emailLogin'),
 contraseñaUsuario = document.getElementById('passwordLogin'),
@@ -38,13 +20,38 @@ nombreReserva = document.getElementById('nombreReserva'),
 apellidoReserva = document.getElementById('apellidoReserva'),
 mailReserva = document.getElementById('mailReserva'),
 terminos = document.getElementById('terminos'),
-inner1 = document.getElementById('inner1');
+inner1 = document.getElementById('inner1'),
+nochesReserva = document.getElementById('nochesReserva'),
+habitaciones = document.getElementById('habitaciones');
 
 let inner = document.getElementById('inner'),
 btnRecordar = document.getElementById('btn__habitaciones__recordar'),
 basicastg, premiumstg, presidencialstg,nuevoDiv,
-usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida, ingresoBooleano
+usuarioPorLoguear, encontradoContraseña, encontradoMail, registroUsuario, nombreIndex, suiteElegida, ingresoBooleano, nochesReservadas
 
+//   USUARIOS PARA LOGIN
+
+const usuarios = [{
+    user: 'Ignacio',
+    password: 'dallape',
+    mail: 'nachodallape@mail.com'
+},
+{
+    user: 'Rodrigo',
+    password: 'molina',
+    mail: 'rodrigomolina@mail.com'
+},
+{
+    user: 'Ariel',
+    password: 'feque',
+    mail: 'arielfeque@mail.com'
+}
+]
+
+
+
+
+// FUNCIONES
 
 function arrayIngresado(user,mail){  //tomo los datos ingresados por el usuario 
     usuarioPorLoguear = [
@@ -54,15 +61,10 @@ function arrayIngresado(user,mail){  //tomo los datos ingresados por el usuario
     return usuarioPorLoguear
 }
 
-
-
-
 function corroborarDatosMail(usuario, usuarioPorLoguear,contraseña){  //corroboro que este ingresando el usuario y la contraseña correcta
 
     encontradoMail = usuarios.find((usuario) => usuario.mail === emailUsuario.value)
     encontradoContraseña = usuarios.find((usuario) => usuario.password === contraseñaUsuario.value)
-    console.log(encontradoContraseña)
-    console.log(encontradoMail)
     if(encontradoContraseña === encontradoMail){
         if(encontradoMail != undefined){
             if(encontradoContraseña != undefined){
@@ -103,6 +105,10 @@ function corroborarDatosMail(usuario, usuarioPorLoguear,contraseña){  //corrobo
 
 }
 
+function encontrarNombreUsuario(usuario){
+    nombreIndex = usuario.find((usuario) => usuario.mail === emailUsuario.value)
+    return nombreIndex
+}
 
 function almacenarDatos(usuario, storage){
     registroUsuario = storage.setItem('user', usuario);
@@ -124,6 +130,7 @@ function eliminarDatos(){
     localStorage.clear();
     sessionStorage.clear();
 }
+
 function eliminarDatosSession(){
     sessionStorage.clear();
 }
@@ -134,42 +141,29 @@ function guardarSuite(suite){
     suiteGuardada = suiteElegida
     return suiteElegida
 }
-function guardarDatosReserva(nombre,apellido,mail){
+
+function guardarDatosReserva(nombre,apellido,mail, noches){
     datosReservaNombre = localStorage.setItem('nombre',nombre)
     datosReservaApellido = localStorage.setItem('apellido',apellido)
     datosReservaMail = localStorage.setItem('mail',mail)
+    datosReservaNoches = localStorage.setItem('noches',noches)
     datosReservaNombre = localStorage.getItem(nombre)
     datosReservaApellido = localStorage.getItem(apellido)
     datosReservaMail = localStorage.getItem(mail)
+    datosReservaNoches = localStorage.getItem(noches)
     nombreGuardado = datosReservaNombre
     apellidoGuardado = datosReservaApellido
     mailGuardado = datosReservaMail
-    return (nombreGuardado, apellidoGuardado, mailGuardado)
+    nochesReservadas = datosReservaNoches
+    return (nombreGuardado, apellidoGuardado, mailGuardado, nochesReservadas)
 }
 
-function encontrarNombreUsuario(usuario){
-    nombreIndex = usuario.find((usuario) => usuario.mail === emailUsuario.value)
-    console.log(nombreIndex)
-    return nombreIndex
-}
+// EVENTOS
 
-// let passwordUser
-
-// function encontrarContraseñaUsuario(usuario){
-//     passwordUser = usuario.find((usuario) => usuario.mail === emailUsuario.value)
-//     console.log(passwordUser.password)
-//     return passwordUser
-// }
-
-
-eliminarDatos()
 ingresar.addEventListener('click',() =>{
     
     arrayIngresado(emailUsuario,contraseñaUsuario)
     corroborarDatosMail(usuarios, emailUsuario,contraseñaUsuario)
-    console.log(typeof corroborarDatosMail)
-    console.log(ingresoBooleano)
-    console.log(typeof emailUsuario)
     if(ingresoBooleano != false){
         
         if((encontradoMail.mail == emailUsuario.value)&&(encontradoContraseña.password == contraseñaUsuario.value)){
@@ -203,14 +197,16 @@ btnPremium.addEventListener('click', () => {
     guardarSuite(premium)
 }
 )
+
 btnPresidencial.addEventListener('click', () => {
     guardarSuite(presidencial)
 
 }
 )
+
 btnRecordar.addEventListener('click', () => {
     if(localStorage.getItem('habitacion') != null && localStorage.getItem('nombre') != null && localStorage.getItem('apellido') != null && localStorage.getItem('mail') != null){
-        inner.textContent = 'Hola '+ localStorage.getItem('nombre') + " " + localStorage.getItem('apellido') + '! Reservaste la ' + localStorage.getItem('habitacion') + ', te llegará la confirmacion de reserva a tu mail: ' + localStorage.getItem('mail')
+        inner.textContent = 'Hola '+ localStorage.getItem('nombre') + " " + localStorage.getItem('apellido') + '! Reservaste la ' + localStorage.getItem('habitacion') + ' por una cantidad de '+ localStorage.getItem('noches') + ' noches, te llegará la confirmacion de reserva a tu mail: ' + localStorage.getItem('mail')
     } else {
         inner.textContent = 'No has reservado ninguna habitación por el momento'
     }
@@ -232,14 +228,9 @@ btnLogout.addEventListener('click', () => {
         onClick: function(){}
     }).showToast();    
     inner.textContent = ""
-    eliminarDatosSession()
+    eliminarDatos()
     presentarInfo(toggles, 'd-none')
 })
-
-
-
-
-
 
 //ENVIO DE RESERVA
 
@@ -247,7 +238,7 @@ let memoriaReserva
 
 enviarReserva.addEventListener('click', () => {
     
-    if(nombreReserva.value != "" && apellidoReserva.value != "" && mailReserva.value != "" && terminos.checked){                
+    if(nombreReserva.value != "" && apellidoReserva.value != "" && mailReserva.value != "" && terminos.checked && nochesReserva.value != ""){                
         Toastify({
             text: "Reserva Confirmada!!",
             duration: 3000,
@@ -264,8 +255,7 @@ enviarReserva.addEventListener('click', () => {
         }).showToast();
         
         memoriaReserva = true
-        console.log(nombreReserva.value, apellidoReserva.value, mailReserva.value)
-        guardarDatosReserva(nombreReserva.value, apellidoReserva.value, mailReserva.value)
+        guardarDatosReserva(nombreReserva.value, apellidoReserva.value, mailReserva.value, nochesReserva.value)
         }else if(!terminos.checked){
             Swal.fire({
                 title: 'Es necesario aceptar los terminos y condiciones para reservar!',
@@ -285,6 +275,23 @@ enviarReserva.addEventListener('click', () => {
         }
         }
                 )
-                
-                
-    
+
+// PROMESAS Y DATA.JSON PARA BASE DE DATOS DEL PRODUCTO
+
+fetch("/data.json")
+.then((resp) => resp.json())
+.then((data) => {
+    data.forEach((producto) =>{
+        const li = document.createElement('li')
+        li.innerHTML = `
+        <h4> ${producto.nombre}   </h4>
+        <h5> $ ${producto.precio}   </h5>
+        <h6>  ${producto.description}   </h6>
+        ` ;
+        habitaciones.append(li)
+    })
+})
+
+//AÑADIENDO CLASE A LA LI
+
+habitaciones.add.classList('habitaciones__descripcion')

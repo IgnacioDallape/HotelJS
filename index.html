@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./varios/css/style.css">
 </head>
 <body >
-    <div class="toggles">
+    <div class="toggles ">
         <nav id="loginBar" class="navbar navbar-light loginBar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -58,10 +58,10 @@
         </div>
 
     </div>
-    <div class="toggles d-none imagen__fondo" id="divGeneral">
+    <div class="toggles d-none" id="divGeneral">
             <div class="header__background">
                     <img class="header__logo" src="./varios/Img/logo.jpg" alt="logo" width="60"></a>
-                <div class="left">
+                <div class="left ">
                     <button id="btnLogout" class="btn btn-outline-secondary d-none toggles header__logout" type="button">Logout</button>
                     <p id="nombreUsuario" class="d-none toggles"></p>
                 </div>
@@ -79,37 +79,45 @@
             
         </div>
     
-        <main>
-            <div class="container paddingTop paddingBottom">
-                <div>
-                    <a href="#" class="btn-contenedor" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__basica">Suite Básica </button> </a>
-                    <a href="#" class="btn-contenedor" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__premium">Suite Premium</button></a>
-                    <a href="#" class="btn-contenedor" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__presidencial">Suite Presidencial</button></a>
-        
+            <main>
+                <div class="container paddingTop paddingBottom">
+                    
+                    <div class="flex">
+                        <div class=" imagenes__posicion"><img src="./varios/Img/suites/suiteNormal.jpg" alt="" class="body__suites gap">
+                        <div class=" imagenes__posicion"><img src="./varios/Img/suites/suitePremium.jpg" alt="" class="body__suites gap"></div>
+                        <div class=" imagenes__posicion"><img src="./varios/Img/suites/suitePresidencial.jpg" alt="" class="body__suites gap"></div>
+                    </div>
+                    
+                    
+                    
+            </main>
+            <article>
+                
+                <div class="container"> 
+                    <a href="#" class="btn-contenedor suite__basica__reservar" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño " id="btn__habitaciones__basica">Reservar Suite Básica </button> </a>
+                    <a href="#" class="btn-contenedor suite__premium__reservar" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño " id="btn__habitaciones__premium">Reservar Suite Premium</button></a>
+                    <a href="#" class="btn-contenedor suite__presidencial__reservar" data-bs-toggle="modal" data-bs-target="#ventanaModalReserva"><button class="btn btn-primary btn-tamaño " id="btn__habitaciones__presidencial">Reservar Suite Presidencial</button></a>
+                    
                 </div>
-                <div class="flex">
-                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suiteNormal.jpg" alt="" class="body__suites gap">
-                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suitePremium.jpg" alt="" class="body__suites gap"></div>
-                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suitePresidencial.jpg" alt="" class="body__suites gap"></div>
-                </div>
+                
                 <div class="centrado" >
-                    <a href="#" class="pregunta" ><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__recordar">¿Cuál habitación había reservado?</button></a>
+                    <a  class="pregunta" ><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__recordar">¿Cuál habitación había reservado?</button></a>
                 </div>
-
+                
+                
                 <div id="inner" class="inner">
                     
                 </div>
                 
+                <div id="habitaciones" class="habitaciones__descripcion container col-xm-7 ">
+                </div>
                 
-    
+            </article>
+            <footer>
                 
-        </main>
-    
-        <footer>
-            
-            
-            <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="tituloVentanaReserva"   id="ventanaModalReserva"  aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" >
+                
+                <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="tituloVentanaReserva"   id="ventanaModalReserva"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" >
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h5> Formulario de reserva!</h5>
@@ -135,6 +143,11 @@
                                         <input type="text" name="mail" id="mailReserva" value="" required>
                                     </h5>
 
+                                    <h5 id="tituloVentanaReserva">
+                                        <label for="noches">Noches</label>
+                                        <input type="number" name="noches" id="nochesReserva" value="" required>
+                                    </h5>
+
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
@@ -154,10 +167,6 @@
                 </div>
 
         </footer>
-    
-    
-    
-    
     
     
     </div>

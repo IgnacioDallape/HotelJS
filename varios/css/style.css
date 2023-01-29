@@ -4,12 +4,7 @@
     box-sizing: border-box ;
 } 
 
-.imagen__fondo{
-    background-image: url(../Img/fondo.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 50rem;
-}
+
 
 .header__titulo__contenedor{
     display: flex;
@@ -31,7 +26,7 @@
 
 .header__logout{
     position: relative;
-    bottom: 8rem;
+    bottom: 8.7rem;
     right: 1rem;
     width: 6rem;
     height: 3rem;
@@ -104,7 +99,37 @@
     
     
 }
+/* 
+.suite__basica__reservar{
+    position: relative;
+    left: 25rem;
+    top: 12rem;
+}
 
+.suite__premium__reservar{
+    position: relative;
+    left: 1.3rem;
+    top: 25rem;
+}
+
+.suite__presidencial__reservar{
+    position: relative;
+    left: 19rem;
+    top: 32rem;
+} */
+
+.habitaciones__descripcion{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    left: 7rem;
+    bottom: 52rem;
+    gap: 5rem;
+    max-width: 67rem;
+}
+.habitaciones__descripcion{
+    max-width: 32rem;
+}
 .gap{
     
     padding: 1rem; 
@@ -127,7 +152,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    right: 58rem;
+    right: 33rem;
     top: 13rem;
 }
 
@@ -135,9 +160,9 @@
     border: solid 1px black;
     border-radius: 1rem;
     position: relative;
-    right: 40rem;
-    top: 14rem;
-    width: 15rem;
+    left: 32rem;
+    top: 9rem;
+    width: 50rem;
     margin-block-end: auto;
     background-color: #f7e2e2;
     padding: 1rem;

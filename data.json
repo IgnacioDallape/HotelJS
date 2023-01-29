@@ -1,0 +1,5 @@
+[
+    {"nombre": "Suite basica", "precio": 2000 , "id" : "1", "description" : "Habitación simple con un baño en suite, TV 32´, con desayuno simple incluido"},
+    {"nombre": "Suite Premium", "precio": 3000 , "id" : "2", "description" : "Habitación con un baño en suite, sillones y TV 42´, con desayuno y almuerzo incluido"},
+    {"nombre": "Suite Presidencial", "precio": 5000 , "id" : "3", "description" : "Habitación grande con dos baños en suite, sala de estar pequeña, con mesa incluida, sillones, mesa y TV 52´ con servicio de plataformas digitales, desayuno y almuerzo incluido"}
+]
