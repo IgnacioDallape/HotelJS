@@ -58,19 +58,21 @@
         </div>
 
     </div>
-    <div class="toggles d-none" id="divGeneral">
-        <img src="./varios/Img/logo.jpg" alt="logo" width="60"></a>
-        <div class="left">
-            <button id="btnLogout" class="btn btn-outline-secondary d-none toggles" type="button">Logout</button>
+    <div class="toggles d-none imagen__fondo" id="divGeneral">
+            <div class="header__background">
+                    <img class="header__logo" src="./varios/Img/logo.jpg" alt="logo" width="60"></a>
+                <div class="left">
+                    <button id="btnLogout" class="btn btn-outline-secondary d-none toggles header__logout" type="button">Logout</button>
                     <p id="nombreUsuario" class="d-none toggles"></p>
-        </div>
-        <header class="header__titulo__contenedor ">
-            <h1 class="header__titulo paddingBottom">Hotel Dallape´s</h1>
-
-            <div class="" id="inner1">
-                    hola
                 </div>
-            
+                <header class="header__titulo__contenedor ">
+                    <h1 class="header__titulo paddingBottom">Hotel Dallape´s</h1>
+                    
+                    <div class="nombre__index" id="inner1">
+                        
+                    </div>
+                
+            </div>
         </header>
 
         <div>
@@ -86,9 +88,9 @@
         
                 </div>
                 <div class="flex">
-                    <div class="flex"><img src="./varios/Img/suites/suiteNormal.jpg" alt="" class="body__suites gap">
-                    <div class="flex"><img src="./varios/Img/suites/suitePremium.jpg" alt="" class="body__suites gap"></div>
-                    <div class="flex"><img src="./varios/Img/suites/suitePresidencial.jpg" alt="" class="body__suites gap"></div>
+                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suiteNormal.jpg" alt="" class="body__suites gap">
+                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suitePremium.jpg" alt="" class="body__suites gap"></div>
+                    <div class="flex imagenes__posicion"><img src="./varios/Img/suites/suitePresidencial.jpg" alt="" class="body__suites gap"></div>
                 </div>
                 <div class="centrado" >
                     <a href="#" class="pregunta" ><button class="btn btn-primary btn-tamaño" id="btn__habitaciones__recordar">¿Cuál habitación había reservado?</button></a>
@@ -164,5 +166,6 @@
     <script src="./varios/js/script.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
 </body>
 </html>
